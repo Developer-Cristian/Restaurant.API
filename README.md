@@ -2,7 +2,17 @@
 
 Entities:
 
-- Menù --> Piatto --> Tipo: Antipasto
-							Primo
-							Secondo
-							Dessert
+- Menù --> Piatto --> Tipo Piatto
+
+- Menù: isDinner // sera solo pizza come piatto
+		
+- Piatto: Nome
+		  Tipo piatto
+		  Prezzo
+		  Descrizione
+		  Stelle
+
+- Tipo piatto:  Antipasto
+				Primo
+				Secondo
+				Dessert
