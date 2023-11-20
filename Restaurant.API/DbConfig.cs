@@ -1,4 +1,4 @@
-﻿namespace ProgettoAPI;
+﻿namespace Restaurant.API;
 
 public class DbConfig
 {
