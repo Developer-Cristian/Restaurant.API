@@ -12,7 +12,7 @@ using Restaurant.EntityFramework.Contexts;
 namespace Restaurant.EntityFramework.Migrations
 {
     [DbContext(typeof(RestaurantAPIDbContext))]
-    [Migration("20231120183758_Initial")]
+    [Migration("20231120192047_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
