@@ -5,18 +5,8 @@ namespace Restaurant.EntityFramework.Contexts
 {
     public class RestaurantAPIDbContext : DbContext
     {
-        private string _connectionString { get; set; }
-
-        public RestaurantAPIDbContext(string connectionString)
+        public RestaurantAPIDbContext(DbContextOptions<RestaurantAPIDbContext> options) : base(options)
         {
-            _connectionString = connectionString;
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connectionString);
-
-            base.OnConfiguring(optionsBuilder); 
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

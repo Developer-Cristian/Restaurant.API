@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Restaurant.EntityFramework;
+using Restaurant.EntityFramework.Contexts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,9 +11,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+builder.Services.AddDbContext<RestaurantAPIDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
+});
 
-builder.Services.AddSingleton<IDbContextFactory, RestaurantDbContextFactory>();
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
