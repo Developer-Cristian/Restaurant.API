@@ -7,8 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Restaurant.Common\Restaurant.Common.csproj" />
-  </ItemGroup>
-
 </Project>
