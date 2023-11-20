@@ -1,6 +1,4 @@
-﻿using Restaurant.Common
-
-namespace Restaurant.Models
+﻿namespace Restaurant.Models
 {
     public class Menu : ModelBase
     {
