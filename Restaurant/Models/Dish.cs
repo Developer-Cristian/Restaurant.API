@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Restaurant.Models
 {
@@ -14,8 +15,8 @@ namespace Restaurant.Models
         public DishType Type { get; set; }
 
         [Required(ErrorMessageResourceName = "PriceTypeRequired", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
-        [Range(0.01, double.MaxValue, ErrorMessageResourceName = "PriceNotValid", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
-        public decimal Price { get; set; }
+        [Range(0, double.MaxValue, ErrorMessageResourceName = "PriceNotValid", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
+        public double Price { get; set; }
 
         [Range(1, 5, ErrorMessageResourceName = "StarsNumberNotValid", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
         public int Star { get; set; }
