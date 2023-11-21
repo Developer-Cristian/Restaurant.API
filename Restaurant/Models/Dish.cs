@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.Models
 {
-    public class Dish : ModelBase
+    public class Dish : ModelBase, IEntity
     {
         [Required(ErrorMessageResourceName = "NameRequired", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
         public string Name { get; set; }

@@ -24,14 +24,23 @@ namespace Restaurant.EntityFramework.Contexts
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Menu>()
+                .Property(p => p.Id)
+                .HasDefaultValueSql("NEWID()");
+
             modelBuilder.Entity<Dish>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
 
-            modelBuilder.Entity<Menu>()
+            modelBuilder.Entity<Drink>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
         }
+
+        /// <summary>
+        /// Menu db set
+        /// </summary>
+        public DbSet<Menu> Menus { get; set; }
 
         /// <summary>
         /// Dishes db set
@@ -39,8 +48,9 @@ namespace Restaurant.EntityFramework.Contexts
         public DbSet<Dish> Dishes { get; set; }
 
         /// <summary>
-        /// Menu db set
+        /// Drinks db set
         /// </summary>
-        public DbSet<Menu> Menus { get; set; }
+        public DbSet<Drink> Drinks { get; set; }
+
     }
 }

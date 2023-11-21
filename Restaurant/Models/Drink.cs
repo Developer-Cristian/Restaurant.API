@@ -1,9 +1,10 @@
 ﻿using Restaurant.Common.Models;
 using System.ComponentModel.DataAnnotations;
+using System.Security.Principal;
 
 namespace Restaurant.Models
 {
-    public class Drink : ModelBase
+    public class Drink : ModelBase, IEntity
     {
         [Required(ErrorMessageResourceName = "NameRequired", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
         public string Name { get; set; }
