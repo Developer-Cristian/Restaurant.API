@@ -27,11 +27,20 @@ namespace Restaurant.EntityFramework.Contexts
             modelBuilder.Entity<Dish>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
+
+            modelBuilder.Entity<Menu>()
+                .Property(p => p.Id)
+                .HasDefaultValueSql("NEWID()");
         }
 
         /// <summary>
         /// Dishes db set
         /// </summary>
         public DbSet<Dish> Dishes { get; set; }
+
+        /// <summary>
+        /// Menu db set
+        /// </summary>
+        public DbSet<Menu> Menus { get; set; }
     }
 }
