@@ -1,11 +1,12 @@
 ﻿using Restaurant.Models;
 using Restaurant.Repositories.SaveRepos;
+using Restaurant.Services.ReadServices.Impl;
 using Restaurant.Services.SaveService;
 using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.Services.SaveServices.Impl
 {
-    public class SaveMenuService : ISaveMenuService
+    public class SaveMenuService : ReadMenuService, ISaveMenuService
     {
         private ISaveMenuRepository _repository;
 

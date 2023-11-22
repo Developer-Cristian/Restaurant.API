@@ -1,20 +1,19 @@
 ﻿using Restaurant.Models;
 using Restaurant.Repositories.ReadRepos;
 using Restaurant.Repositories.SaveRepos;
+using Restaurant.Services.ReadServices.Impl;
 using Restaurant.Services.SaveService;
 using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.Services.SaveServices.Impl
 {
-    public class SaveDishService : ISaveDishService
+    public class SaveDishService : ReadDishService, ISaveDishService
     {
         private readonly ISaveDishRepository _repository;
-        private readonly IReadDishRepository _readRepository;
 
-        public SaveDishService(ISaveDishRepository repository, IReadDishRepository readDishRepository)
+        public SaveDishService(ISaveDishRepository repository) : base(repository)
         {
             _repository = repository;
-            _readRepository = readDishRepository;
         }
 
         public async Task<IEnumerable<ValidationResult>> DelateAsync(Guid? id)
