@@ -24,7 +24,7 @@ namespace Restaurant.EntityFramework.Contexts
         {
             base.OnModelCreating(modelBuilder);
 
-
+            // Model builer for entity id on table
 
             modelBuilder.Entity<Menu>()
                 .Property(p => p.Id)
@@ -38,7 +38,7 @@ namespace Restaurant.EntityFramework.Contexts
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
 
-
+            // Model builer for connection between entity 
 
             modelBuilder.Entity<Menu>()
                 .HasMany(m => m.Dishes)

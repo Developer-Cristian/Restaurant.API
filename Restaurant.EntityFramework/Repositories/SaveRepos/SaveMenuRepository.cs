@@ -1,39 +1,40 @@
 ﻿using Restaurant.EntityFramework.Contexts;
 using Restaurant.Models;
 using Restaurant.Repositories.ReadRepos;
+using Restaurant.Repositories.SaveRepos;
 using System.ComponentModel.DataAnnotations;
 
-namespace Restaurant.Repositories.SaveRepos
+namespace Restaurant.EntityFramework.Repositories.SaveRepos
 {
-    public class SaveDishRepository : ReadDishRepository, ISaveDishRepository
+    public class SaveMenuRepository : ReadMenuRepository, ISaveMenuRepository
     {
-        public SaveDishRepository(ApplicationDbContext _context) : base(_context)
+        public SaveMenuRepository(ApplicationDbContext _context) : base(_context)
         { }
 
-        public async Task<Dish> DelateAsync(Guid? id)
+        public async Task<Menu> DelateAsync(Guid? id)
         {
             if (id is null) throw new ArgumentNullException(nameof(id));
 
             var entity = await GetAsync(id);
-            if (entity is null) throw new ArgumentNullException(nameof(id));
+            if (entity is null) throw new ArgumentNullException(nameof(entity));
 
-            _context.Dishes.Remove(entity);
+            _context.Menus.Remove(entity);
             await _context.SaveChangesAsync();
 
             return entity;
         }
 
-        public async Task<IEnumerable<ValidationResult>> SaveAsync(Dish entity)
+        public async Task<IEnumerable<ValidationResult>> SaveAsync(Menu entity)
         {
             if (entity is null) throw new ArgumentNullException(nameof(entity));
 
             if (entity.Id is null)
             {
-                _context.Dishes.Add(entity);
+                _context.Menus.Add(entity);
             }
             else
             {
-                _context.Dishes.Update(entity);
+                _context.Menus.Update(entity);
             }
 
             await _context.SaveChangesAsync();

@@ -5,35 +5,35 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.Repositories.SaveRepos
 {
-    public class SaveDishRepository : ReadDishRepository, ISaveDishRepository
+    public class SaveDrinkRepository : ReadDrinkRepository, ISaveDrinkRepository
     {
-        public SaveDishRepository(ApplicationDbContext _context) : base(_context)
+        public SaveDrinkRepository(ApplicationDbContext _context) : base(_context)
         { }
 
-        public async Task<Dish> DelateAsync(Guid? id)
+        public async Task<Drink> DelateAsync(Guid? id)
         {
             if (id is null) throw new ArgumentNullException(nameof(id));
 
             var entity = await GetAsync(id);
             if (entity is null) throw new ArgumentNullException(nameof(id));
 
-            _context.Dishes.Remove(entity);
+            _context.Drinks.Remove(entity);
             await _context.SaveChangesAsync();
 
             return entity;
         }
 
-        public async Task<IEnumerable<ValidationResult>> SaveAsync(Dish entity)
+        public async Task<IEnumerable<ValidationResult>> SaveAsync(Drink entity)
         {
             if (entity is null) throw new ArgumentNullException(nameof(entity));
 
             if (entity.Id is null)
             {
-                _context.Dishes.Add(entity);
+                _context.Drinks.Add(entity);
             }
             else
             {
-                _context.Dishes.Update(entity);
+                _context.Drinks.Update(entity);
             }
 
             await _context.SaveChangesAsync();
