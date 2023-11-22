@@ -24,6 +24,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Restaurant.Contracts\Restaurant.Contracts.csproj" />
     <ProjectReference Include="..\Restaurant.EntityFramework\Restaurant.EntityFramework.csproj" />
+    <ProjectReference Include="..\Restaurant\Restaurant.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
 using Restaurant.EntityFramework;
+using Restaurant.Repositories.SaveRepos;
 using Restaurant.Services.ReadService;
 using Restaurant.Services.ReadServices.Impl;
+using Restaurant.Services.SaveServices;
 using Team.Lunch.Core.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,9 +16,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IDbContextFactory, RestaurantDbContextFactory>();
 
-// add services and repos
 builder.Services.AddScoped<IReadDishService, ReadDishService>();
 
+// add services and repos
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
