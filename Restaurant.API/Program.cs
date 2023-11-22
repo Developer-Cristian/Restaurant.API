@@ -1,6 +1,4 @@
-using Microsoft.EntityFrameworkCore;
 using Restaurant.EntityFramework;
-using Restaurant.EntityFramework.Contexts;
 using Team.Lunch.Core.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IDbContextFactory, RestaurantDbContextFactory>();
 
-//builder.Services.AddDbContext<RestaurantAPIDbContext>(options =>
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //{
 //    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"));
 //});

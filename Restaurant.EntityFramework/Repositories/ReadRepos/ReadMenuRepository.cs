@@ -4,25 +4,25 @@ using Restaurant.Models;
 
 namespace Restaurant.Repositories.ReadRepos
 {
-    public class ReadDishRepository : IReadDishRepository
+    public class ReadMenuRepository : IReadMenuRepository
     {
         protected ApplicationDbContext _context;
 
-        public ReadDishRepository(ApplicationDbContext context)
+        public ReadMenuRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Dish>> FetchAllAsync()
+        public async Task<IEnumerable<Menu>> FetchAllAsync()
         {
-            return await _context.Dishes.ToListAsync();
+            return await _context.Menus.ToListAsync();
         }
 
-        public async Task<Dish> GetAsync(Guid? id)
+        public async Task<Menu> GetAsync(Guid? id)
         {
             if(id is null) throw new ArgumentNullException(nameof(id));
 
-           return await _context.Dishes.FirstOrDefaultAsync(x => x.Id.Equals(id));
+           return await _context.Menus.FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
     }
 }

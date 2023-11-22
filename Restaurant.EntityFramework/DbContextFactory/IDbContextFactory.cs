@@ -4,5 +4,5 @@ namespace Restaurant.EntityFramework;
 
 public interface IDbContextFactory
 {
-    RestaurantAPIDbContext GetDbContext();
+    ApplicationDbContext GetDbContext();
 }

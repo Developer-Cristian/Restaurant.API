@@ -4,11 +4,11 @@ using Restaurant.Models;
 
 namespace Restaurant.EntityFramework.Contexts
 {
-    public class RestaurantAPIDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
         private string _connectionString;
 
-        public RestaurantAPIDbContext(IConfiguration configuration)
+        public ApplicationDbContext(IConfiguration configuration)
         {
             _connectionString = configuration["ConnectionString"];
         }
@@ -24,6 +24,8 @@ namespace Restaurant.EntityFramework.Contexts
         {
             base.OnModelCreating(modelBuilder);
 
+
+
             modelBuilder.Entity<Menu>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
@@ -35,6 +37,18 @@ namespace Restaurant.EntityFramework.Contexts
             modelBuilder.Entity<Drink>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
+
+
+
+            modelBuilder.Entity<Menu>()
+                .HasMany(m => m.Dishes)
+                .WithOne(d => d.Menu)
+                .HasForeignKey(d => d.Id);
+
+            modelBuilder.Entity<Menu>()
+                .HasMany(m => m.Drinks)
+                .WithOne(d => d.Menu)
+                .HasForeignKey(d => d.Id);
         }
 
         /// <summary>
@@ -51,6 +65,5 @@ namespace Restaurant.EntityFramework.Contexts
         /// Drinks db set
         /// </summary>
         public DbSet<Drink> Drinks { get; set; }
-
     }
 }

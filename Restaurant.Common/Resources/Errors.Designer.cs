@@ -79,6 +79,15 @@ namespace Restaurant.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The fiel Menu is required.
+        /// </summary>
+        public static string MenuRequired {
+            get {
+                return ResourceManager.GetString("MenuRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The fiel name is required.
         /// </summary>
         public static string NameRequired {

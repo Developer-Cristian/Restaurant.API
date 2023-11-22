@@ -123,6 +123,9 @@
   <data name="DishType" xml:space="preserve">
     <value>The fiel Dish type is required</value>
   </data>
+  <data name="MenuRequired" xml:space="preserve">
+    <value>The fiel Menu is required</value>
+  </data>
   <data name="NameRequired" xml:space="preserve">
     <value>The fiel name is required</value>
   </data>

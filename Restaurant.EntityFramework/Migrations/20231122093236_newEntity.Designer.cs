@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.EntityFramework.Contexts;
 
@@ -11,9 +12,11 @@ using Restaurant.EntityFramework.Contexts;
 namespace Restaurant.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class RestaurantAPIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231122093236_newEntity")]
+    partial class newEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,6 +39,9 @@ namespace Restaurant.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("MenuId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -50,6 +56,8 @@ namespace Restaurant.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
 
                     b.ToTable("Dishes");
                 });
@@ -68,6 +76,9 @@ namespace Restaurant.EntityFramework.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("MenuId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -76,6 +87,8 @@ namespace Restaurant.EntityFramework.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
 
                     b.ToTable("Drinks");
                 });
@@ -97,24 +110,16 @@ namespace Restaurant.EntityFramework.Migrations
 
             modelBuilder.Entity("Restaurant.Models.Dish", b =>
                 {
-                    b.HasOne("Restaurant.Models.Menu", "Menu")
+                    b.HasOne("Restaurant.Models.Menu", null)
                         .WithMany("Dishes")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Menu");
+                        .HasForeignKey("MenuId");
                 });
 
             modelBuilder.Entity("Restaurant.Models.Drink", b =>
                 {
-                    b.HasOne("Restaurant.Models.Menu", "Menu")
+                    b.HasOne("Restaurant.Models.Menu", null)
                         .WithMany("Drinks")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Menu");
+                        .HasForeignKey("MenuId");
                 });
 
             modelBuilder.Entity("Restaurant.Models.Menu", b =>

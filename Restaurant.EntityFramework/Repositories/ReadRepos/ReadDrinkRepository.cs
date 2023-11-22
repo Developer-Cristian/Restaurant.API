@@ -4,25 +4,25 @@ using Restaurant.Models;
 
 namespace Restaurant.Repositories.ReadRepos
 {
-    public class ReadDishRepository : IReadDishRepository
+    public class ReadDrinkRepository : IReadDrinkRepository
     {
         protected ApplicationDbContext _context;
 
-        public ReadDishRepository(ApplicationDbContext context)
+        public ReadDrinkRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Dish>> FetchAllAsync()
+        public async Task<IEnumerable<Drink>> FetchAllAsync()
         {
-            return await _context.Dishes.ToListAsync();
+            return await _context.Drinks.ToListAsync();
         }
 
-        public async Task<Dish> GetAsync(Guid? id)
+        public async Task<Drink> GetAsync(Guid? id)
         {
             if(id is null) throw new ArgumentNullException(nameof(id));
 
-           return await _context.Dishes.FirstOrDefaultAsync(x => x.Id.Equals(id));
+           return await _context.Drinks.FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
     }
 }

@@ -11,7 +11,7 @@ using Restaurant.EntityFramework.Contexts;
 
 namespace Restaurant.EntityFramework.Migrations
 {
-    [DbContext(typeof(RestaurantAPIDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20231120192047_Initial")]
     partial class Initial
     {

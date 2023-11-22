@@ -13,8 +13,8 @@ public class RestaurantDbContextFactory : IDbContextFactory
         _configuration = config;
     }
 
-    public RestaurantAPIDbContext GetDbContext()
+    public ApplicationDbContext GetDbContext()
     {
-        return new RestaurantAPIDbContext(_configuration);
+        return new ApplicationDbContext(_configuration);
     }
 }
