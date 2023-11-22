@@ -10,7 +10,7 @@ namespace Restaurant.Repositories.SaveRepos
         public SaveDishRepository(ApplicationDbContext _context) : base(_context)
         { }
 
-        public async Task<Dish> DelateAsync(Guid? id)
+        public async Task<IEnumerable<ValidationResult>> DelateAsync(Guid? id)
         {
             if (id is null) throw new ArgumentNullException(nameof(id));
 
@@ -20,7 +20,7 @@ namespace Restaurant.Repositories.SaveRepos
             _context.Dishes.Remove(entity);
             await _context.SaveChangesAsync();
 
-            return entity;
+            return Enumerable.Empty<ValidationResult>();
         }
 
         public async Task<IEnumerable<ValidationResult>> SaveAsync(Dish entity)

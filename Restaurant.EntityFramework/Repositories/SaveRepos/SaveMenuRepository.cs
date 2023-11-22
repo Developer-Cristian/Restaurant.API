@@ -11,7 +11,7 @@ namespace Restaurant.EntityFramework.Repositories.SaveRepos
         public SaveMenuRepository(ApplicationDbContext _context) : base(_context)
         { }
 
-        public async Task<Menu> DelateAsync(Guid? id)
+        public async Task<IEnumerable<ValidationResult>> DelateAsync(Guid? id)
         {
             if (id is null) throw new ArgumentNullException(nameof(id));
 
@@ -21,7 +21,7 @@ namespace Restaurant.EntityFramework.Repositories.SaveRepos
             _context.Menus.Remove(entity);
             await _context.SaveChangesAsync();
 
-            return entity;
+            return Enumerable.Empty<ValidationResult>();
         }
 
         public async Task<IEnumerable<ValidationResult>> SaveAsync(Menu entity)

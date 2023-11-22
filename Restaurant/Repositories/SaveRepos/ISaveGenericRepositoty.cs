@@ -8,6 +8,6 @@ namespace Restaurant.Repositories.SaveRepos
     {
         Task<IEnumerable<ValidationResult>> SaveAsync(T entity);
 
-        Task<T> DelateAsync(Guid? id);
+        Task<IEnumerable<ValidationResult>> DelateAsync(Guid? id);
     }
 }

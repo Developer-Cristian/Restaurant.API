@@ -61,6 +61,15 @@ namespace Restaurant.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; with id &apos;{1}&apos; already existing.
+        /// </summary>
+        public static string AlreadyExisting {
+            get {
+                return ResourceManager.GetString("AlreadyExisting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The fiel description is required.
         /// </summary>
         public static string DescriptionRequired {
