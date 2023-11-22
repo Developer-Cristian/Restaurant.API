@@ -16,3 +16,4 @@ Entities:
 				Primo
 				Secondo
 				Dessert
+				Pizza

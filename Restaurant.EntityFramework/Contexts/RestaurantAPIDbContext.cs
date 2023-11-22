@@ -24,14 +24,33 @@ namespace Restaurant.EntityFramework.Contexts
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Menu>()
+                .Property(p => p.Id)
+                .HasDefaultValueSql("NEWID()");
+
             modelBuilder.Entity<Dish>()
+                .Property(p => p.Id)
+                .HasDefaultValueSql("NEWID()");
+
+            modelBuilder.Entity<Drink>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
         }
 
         /// <summary>
+        /// Menu db set
+        /// </summary>
+        public DbSet<Menu> Menus { get; set; }
+
+        /// <summary>
         /// Dishes db set
         /// </summary>
         public DbSet<Dish> Dishes { get; set; }
+
+        /// <summary>
+        /// Drinks db set
+        /// </summary>
+        public DbSet<Drink> Drinks { get; set; }
+
     }
 }

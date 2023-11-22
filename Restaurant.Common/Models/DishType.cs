@@ -1,4 +1,4 @@
-﻿namespace Restaurant.Models
+﻿namespace Restaurant.Common.Models
 {
     public enum DishType
     {

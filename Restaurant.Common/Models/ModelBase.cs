@@ -1,6 +1,8 @@
-﻿namespace Restaurant.Models
+﻿using Restaurant.Common.Models;
+
+namespace Restaurant.Models
 {
-    public class ModelBase
+    public class ModelBase : IEntity
     {
         public Guid? Id { get; set; }
 
