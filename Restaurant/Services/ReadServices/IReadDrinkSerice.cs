@@ -2,7 +2,7 @@
 
 namespace Restaurant.Services.ReadService
 {
-    public interface IReadDrinkSerice : IReadGenericService<Drink>
+    public interface IReadDrinkService : IReadGenericService<Drink>
     {
     }
 }
