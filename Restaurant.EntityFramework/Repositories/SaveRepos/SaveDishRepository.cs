@@ -1,9 +1,10 @@
 ﻿using Restaurant.EntityFramework.Contexts;
+using Restaurant.EntityFramework.Repositories.ReadRepos;
 using Restaurant.Models;
-using Restaurant.Repositories.ReadRepos;
+using Restaurant.Repositories.SaveRepos;
 using System.ComponentModel.DataAnnotations;
 
-namespace Restaurant.Repositories.SaveRepos
+namespace Restaurant.EntityFramework.Repositories.SaveRepos
 {
     public class SaveDishRepository : ReadDishRepository, ISaveDishRepository
     {

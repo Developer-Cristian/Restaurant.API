@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.Services.SaveServices.Impl
 {
-    public class SaveDrinkService : ReadDrinkService, ISaveDrinkService
+    public class SaveDrinkService : ISaveDrinkService
     {
         private ISaveDrinkRepository _repository;
 

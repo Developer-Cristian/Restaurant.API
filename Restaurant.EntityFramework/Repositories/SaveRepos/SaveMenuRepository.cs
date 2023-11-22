@@ -1,6 +1,6 @@
 ﻿using Restaurant.EntityFramework.Contexts;
+using Restaurant.EntityFramework.Repositories.ReadRepos;
 using Restaurant.Models;
-using Restaurant.Repositories.ReadRepos;
 using Restaurant.Repositories.SaveRepos;
 using System.ComponentModel.DataAnnotations;
 

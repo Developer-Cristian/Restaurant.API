@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Restaurant.Contracts.Response;
+using Restaurant.Services.ReadService;
+using Restaurant.Services.ReadServices.Impl;
 using Restaurant.Services.SaveService;
 
 namespace Restaurant.API.Controllers
@@ -10,11 +12,13 @@ namespace Restaurant.API.Controllers
     public class DishesController : ControllerBase
     {
         private readonly ISaveDishService _saveDishService;
+        private readonly IReadDishService _readDishService;
         private readonly IMapper _mapper;
 
-        public DishesController(ISaveDishService saveDishService, IMapper mapper)
+        public DishesController(ISaveDishService saveDishService, IReadDishService readDishService, IMapper mapper)
         {
             _saveDishService = saveDishService;
+            _readDishService = readDishService;
             _mapper = mapper;
         }
 
@@ -23,7 +27,9 @@ namespace Restaurant.API.Controllers
         [ProducesResponseType(200, Type = typeof(List<DishResponse>))]
         public async Task<IActionResult> FetchAsync()
         {
-            var result = _saveDishService.
+            //var result = await _readDishService.FetchAllAsync();
+
+            //if (result is null) return NoContent();
 
             return Ok();
         }

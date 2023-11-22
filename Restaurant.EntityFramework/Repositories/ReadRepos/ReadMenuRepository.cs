@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.EntityFramework.Contexts;
 using Restaurant.Models;
+using Restaurant.Repositories.ReadRepos;
 
-namespace Restaurant.Repositories.ReadRepos
+namespace Restaurant.EntityFramework.Repositories.ReadRepos
 {
     public class ReadMenuRepository : IReadMenuRepository
     {
@@ -20,9 +21,9 @@ namespace Restaurant.Repositories.ReadRepos
 
         public async Task<Menu> GetAsync(Guid? id)
         {
-            if(id is null) throw new ArgumentNullException(nameof(id));
+            if (id is null) throw new ArgumentNullException(nameof(id));
 
-           return await _context.Menus.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            return await _context.Menus.FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
     }
 }

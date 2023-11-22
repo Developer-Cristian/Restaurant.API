@@ -4,7 +4,7 @@ using Restaurant.Services.SaveServices;
 
 namespace Restaurant.Services.SaveService
 {
-    public interface ISaveDrinkService : IReadDrinkService, ISaveGenericService<Drink>
+    public interface ISaveDrinkService : ISaveGenericService<Drink>
     {
     }
 }
