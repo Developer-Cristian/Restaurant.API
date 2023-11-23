@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using Restaurant.Contracts.Response;
 using Restaurant.Services.ReadService;
 using Restaurant.Services.SaveService;
@@ -26,9 +27,9 @@ namespace Restaurant.API.Controllers
         [ProducesResponseType(200, Type = typeof(List<DishResponse>))]
         public async Task<IActionResult> FetchAsync()
         {
-            //var result = await _readDishService.FetchAllAsync();
+            var result = await _readDishService.FetchAllAsync();
 
-            //if (result is null) return NoContent();
+            if (result.IsNullOrEmpty()) return NoContent();
 
             return Ok();
         }

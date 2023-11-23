@@ -17,10 +17,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Create configuration and User secret connection string
 var config = builder.Configuration.AddUserSecrets<string>().Build(); 
 var dbSettings = config.GetSection("database").Get<DbConfig>();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
