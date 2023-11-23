@@ -88,6 +88,24 @@ namespace Restaurant.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; with id &apos;{1}&apos; not found.
+        /// </summary>
+        public static string EntityWithIdNotFound {
+            get {
+                return ResourceManager.GetString("EntityWithIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The fiel Id is required.
+        /// </summary>
+        public static string IdRequired {
+            get {
+                return ResourceManager.GetString("IdRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The fiel Menu is required.
         /// </summary>
         public static string MenuRequired {
@@ -97,7 +115,7 @@ namespace Restaurant.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The fiel name is required.
+        ///   Looks up a localized string similar to The fiel Name is required.
         /// </summary>
         public static string NameRequired {
             get {

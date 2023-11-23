@@ -126,11 +126,17 @@
   <data name="DishType" xml:space="preserve">
     <value>The fiel Dish type is required</value>
   </data>
+  <data name="EntityWithIdNotFound" xml:space="preserve">
+    <value>'{0}' with id '{1}' not found</value>
+  </data>
+  <data name="IdRequired" xml:space="preserve">
+    <value>The fiel Id is required</value>
+  </data>
   <data name="MenuRequired" xml:space="preserve">
     <value>The fiel Menu is required</value>
   </data>
   <data name="NameRequired" xml:space="preserve">
-    <value>The fiel name is required</value>
+    <value>The fiel Name is required</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>The fiel Price is required</value>
