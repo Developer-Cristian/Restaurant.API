@@ -1,8 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Restaurant.EntityFramework;
 using Restaurant.EntityFramework.Contexts;
 
-namespace Team.Lunch.Core.EntityFramework;
+namespace Restaurant.EntityFramework.DbContextFactory;
 
 public class RestaurantDbContextFactory : IDbContextFactory
 {
