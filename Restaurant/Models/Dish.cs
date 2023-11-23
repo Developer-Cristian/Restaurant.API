@@ -20,5 +20,8 @@ namespace Restaurant.Models
 
         [Range(1, 5, ErrorMessageResourceName = "StarsNumberNotValid", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
         public int Star { get; set; }
+
+        [Required(ErrorMessageResourceName = "MenuRequired", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
+        public Menu Menu { get; set; }
     }
 }

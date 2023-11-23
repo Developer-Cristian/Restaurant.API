@@ -117,14 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AlreadyExisting" xml:space="preserve">
+    <value>'{0}' with id '{1}' already existing</value>
+  </data>
   <data name="DescriptionRequired" xml:space="preserve">
     <value>The fiel description is required</value>
   </data>
   <data name="DishType" xml:space="preserve">
     <value>The fiel Dish type is required</value>
   </data>
+  <data name="EntityWithIdNotFound" xml:space="preserve">
+    <value>'{0}' with id '{1}' not found</value>
+  </data>
+  <data name="IdRequired" xml:space="preserve">
+    <value>The fiel Id is required</value>
+  </data>
+  <data name="MenuRequired" xml:space="preserve">
+    <value>The fiel Menu is required</value>
+  </data>
   <data name="NameRequired" xml:space="preserve">
-    <value>The fiel name is required</value>
+    <value>The fiel Name is required</value>
   </data>
   <data name="Price" xml:space="preserve">
     <value>The fiel Price is required</value>

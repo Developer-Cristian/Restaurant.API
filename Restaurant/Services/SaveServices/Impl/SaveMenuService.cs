@@ -14,14 +14,19 @@ namespace Restaurant.Services.SaveServices.Impl
             _repository = repository;
         }
 
-        public async Task<Menu> DelateAsync(Guid? id)
+        public async Task<IEnumerable<ValidationResult>> DelateAsync(Guid? id)
         {
-            return await _repository.DelateAsync(id);
+            if (id is null) throw new ArgumentNullException(nameof(id));
+
+            var errors = Array.Empty<ValidationResult>().ToList();
+
+            await _repository.DelateAsync(id);
+            return errors;
         }
 
-        public async Task<IEnumerable<ValidationResult>> SaveAsync(Menu model)
+        public async Task<IEnumerable<ValidationResult>> SaveAsync(Menu entity)
         {
-            return await _repository.SaveAsync(model);
+            return await _repository.SaveAsync(entity);
         }
     }
 }

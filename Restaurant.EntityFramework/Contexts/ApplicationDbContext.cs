@@ -4,25 +4,16 @@ using Restaurant.Models;
 
 namespace Restaurant.EntityFramework.Contexts
 {
-    public class RestaurantAPIDbContext : DbContext
+    public class ApplicationDbContext : DbContext
     {
-        private string _connectionString;
-
-        public RestaurantAPIDbContext(IConfiguration configuration)
-        {
-            _connectionString = configuration["ConnectionString"];
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer(_connectionString);
-
-            base.OnConfiguring(optionsBuilder);
-        }
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            // Model builer for entity id on table
 
             modelBuilder.Entity<Menu>()
                 .Property(p => p.Id)
@@ -35,6 +26,18 @@ namespace Restaurant.EntityFramework.Contexts
             modelBuilder.Entity<Drink>()
                 .Property(p => p.Id)
                 .HasDefaultValueSql("NEWID()");
+
+            // Model builer for connection between entity 
+
+            modelBuilder.Entity<Menu>()
+                .HasMany(m => m.Dishes)
+                .WithOne(d => d.Menu)
+                .HasForeignKey(d => d.Id);
+
+            modelBuilder.Entity<Menu>()
+                .HasMany(m => m.Drinks)
+                .WithOne(d => d.Menu)
+                .HasForeignKey(d => d.Id);
         }
 
         /// <summary>
@@ -51,6 +54,5 @@ namespace Restaurant.EntityFramework.Contexts
         /// Drinks db set
         /// </summary>
         public DbSet<Drink> Drinks { get; set; }
-
     }
 }

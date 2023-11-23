@@ -3,7 +3,7 @@ using Restaurant.Repositories.ReadRepos;
 
 namespace Restaurant.Repositories.SaveRepos
 {
-    public interface ISaveDishRepository : ISaveGenericRepositoty<Dish> 
+    public interface ISaveDishRepository : ISaveGenericRepositoty<Dish>, IReadDishRepository
     {
     }
 }

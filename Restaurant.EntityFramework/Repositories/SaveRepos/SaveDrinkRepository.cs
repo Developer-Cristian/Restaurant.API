@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.EntityFramework.Repositories.SaveRepos
 {
-    public class SaveDishRepository : ReadDishRepository, ISaveDishRepository
+    public class SaveDrinkRepository : ReadDrinkRepository, ISaveDrinkRepository
     {
-        public SaveDishRepository(ApplicationDbContext _context) : base(_context)
+        public SaveDrinkRepository(ApplicationDbContext _context) : base(_context)
         { }
 
         public async Task<IEnumerable<ValidationResult>> DelateAsync(Guid? id)
@@ -18,23 +18,23 @@ namespace Restaurant.EntityFramework.Repositories.SaveRepos
             var entity = await GetAsync(id);
             if (entity is null) throw new ArgumentNullException(nameof(id));
 
-            _context.Dishes.Remove(entity);
+            _context.Drinks.Remove(entity);
             await _context.SaveChangesAsync();
 
             return Enumerable.Empty<ValidationResult>();
         }
 
-        public async Task<IEnumerable<ValidationResult>> SaveAsync(Dish entity)
+        public async Task<IEnumerable<ValidationResult>> SaveAsync(Drink entity)
         {
             if (entity is null) throw new ArgumentNullException(nameof(entity));
 
             if (entity.Id is null)
             {
-                _context.Dishes.Add(entity);
+                _context.Drinks.Add(entity);
             }
             else
             {
-                _context.Dishes.Update(entity);
+                _context.Drinks.Update(entity);
             }
 
             await _context.SaveChangesAsync();
