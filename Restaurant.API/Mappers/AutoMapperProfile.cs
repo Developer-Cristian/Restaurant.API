@@ -9,13 +9,13 @@ namespace Restaurant.API.Mappers
     {
         public AutoMapperProfile()
         {
-                CreateMap<Dish, DishResponse>();
-                CreateMap<CreateDishRequest, Dish>();
-                CreateMap<UpdateDishRequest, Dish>();
+            CreateMap<Dish, DishResponse>(); 
+            CreateMap<CreateDishRequest, Dish>();
+            CreateMap<UpdateDishRequest, Dish>();
 
-                CreateMap<Menu, MenuResponse>();
-                CreateMap<CreateMenuRequest, Menu>();
-                CreateMap<UpdateMenuRequest, Menu>();
+            CreateMap<Menu, MenuResponse>();
+            CreateMap<CreateMenuRequest, Menu>();
+            CreateMap<UpdateMenuRequest, Menu>();
         }
     }
 }

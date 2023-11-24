@@ -28,7 +28,7 @@ namespace Restaurant.API.Controllers
 
         [HttpGet]
         [Route("FetchAllDishes")]
-        [ProducesResponseType(200, Type = typeof(List<DishResponse>))]
+        [ProducesResponseType(typeof(List<DishResponse>), 200)]
         public async Task<IActionResult> FetchAsync()
         {
             var result = await _readDishService.FetchAllAsync();

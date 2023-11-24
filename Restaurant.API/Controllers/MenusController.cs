@@ -6,6 +6,7 @@ using Restaurant.Contracts.Response;
 using Restaurant.Models;
 using Restaurant.Services.ReadService;
 using Restaurant.Services.SaveService;
+using Restaurant.Services.SaveServices.Impl;
 
 namespace Restaurant.API.Controllers
 {
@@ -30,14 +31,14 @@ namespace Restaurant.API.Controllers
 
         [HttpGet]
         [Route("FetchAllMenus")]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<MenuResponse>))]
+        [ProducesResponseType(typeof(List<MenuResponse>), 200)]
         public async Task<IActionResult> FetchAsync()
         {
             var result = await _readMenuService.FetchAllAsync();
 
             if (result.IsNullOrEmpty()) return NoContent();
 
-            return Ok(_mapper.Map<MenuResponse>(result));
+            return Ok(_mapper.Map<List<MenuResponse>>(result));
         }
 
         [HttpGet]
@@ -56,7 +57,7 @@ namespace Restaurant.API.Controllers
 
         [HttpPost]
         [Route("CreateMenu")]
-        [ProducesResponseType(200, Type = typeof(MenuResponse))]
+        [ProducesResponseType(typeof(MenuResponse), 200)]
         public async Task<IActionResult> CreateAsync(CreateMenuRequest request)
         {
             if (request is null) return BadRequest();
@@ -90,9 +91,9 @@ namespace Restaurant.API.Controllers
             return Ok(_mapper.Map<MenuResponse>(entity));
         }
 
-        [HttpPost]
+        [HttpPut]
         [Route("UpdateMenu")]
-        [ProducesResponseType(200, Type = typeof(MenuResponse))]
+        [ProducesResponseType(typeof(MenuResponse), 200)]
         public async Task<IActionResult> UpdateAsync(UpdateMenuRequest request)
         {
             if (request is null) return BadRequest();
@@ -124,6 +125,26 @@ namespace Restaurant.API.Controllers
             }
 
             var errors = await _saveMenuService.SaveAsync(existing);
+
+            if (errors.Any()) return BadRequest(errors);
+
+            return Ok(_mapper.Map<MenuResponse>(existing));
+        }
+
+        [HttpDelete]
+        [Route("DeleteMenu/{id}")]
+        [ProducesResponseType(typeof(MenuResponse), 200)]
+        public async Task<IActionResult> DeleteAsync(Guid? id)
+        {
+            if (id is null) return BadRequest();
+
+            if (!ModelState.IsValid) return BadRequest();
+
+            var existing = await _readDishService.GetAsync(id);
+            if (existing is null)
+                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Dish", id));
+
+            var errors = await _saveMenuService.DelateAsync(id);
 
             if (errors.Any()) return BadRequest(errors);
 

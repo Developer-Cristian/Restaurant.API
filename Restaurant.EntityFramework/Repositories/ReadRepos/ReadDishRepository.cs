@@ -16,14 +16,14 @@ namespace Restaurant.EntityFramework.Repositories.ReadRepos
 
         public async Task<IEnumerable<Dish>> FetchAllAsync()
         {
-            return await _context.Dishes.ToListAsync();
+            return await _context.Dishes.Include(x => x.Menu).ToListAsync();
         }
 
         public async Task<Dish> GetAsync(Guid? id)
         {
             if (id is null) throw new ArgumentNullException(nameof(id));
 
-            return await _context.Dishes.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            return await _context.Dishes.Include(x => x.Menu).FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
     }
 }

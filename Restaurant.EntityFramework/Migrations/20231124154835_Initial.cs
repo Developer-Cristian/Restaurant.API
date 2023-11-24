@@ -6,27 +6,46 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Restaurant.EntityFramework.Migrations
 {
     /// <inheritdoc />
-    public partial class newEntity : Migration
+    public partial class Initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<Guid>(
-                name: "MenuId",
-                table: "Dishes",
-                type: "uniqueidentifier",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "Menus",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dishes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    Star = table.Column<int>(type: "int", nullable: false),
+                    MenuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Dishes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Dishes_Menus_MenuId",
+                        column: x => x.MenuId,
+                        principalTable: "Menus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -37,7 +56,7 @@ namespace Restaurant.EntityFramework.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
-                    MenuId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    MenuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreationDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -47,7 +66,8 @@ namespace Restaurant.EntityFramework.Migrations
                         name: "FK_Drinks_Menus_MenuId",
                         column: x => x.MenuId,
                         principalTable: "Menus",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -59,35 +79,19 @@ namespace Restaurant.EntityFramework.Migrations
                 name: "IX_Drinks_MenuId",
                 table: "Drinks",
                 column: "MenuId");
-
-            migrationBuilder.AddForeignKey(
-                name: "FK_Dishes_Menus_MenuId",
-                table: "Dishes",
-                column: "MenuId",
-                principalTable: "Menus",
-                principalColumn: "Id");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropForeignKey(
-                name: "FK_Dishes_Menus_MenuId",
-                table: "Dishes");
+            migrationBuilder.DropTable(
+                name: "Dishes");
 
             migrationBuilder.DropTable(
                 name: "Drinks");
 
             migrationBuilder.DropTable(
                 name: "Menus");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Dishes_MenuId",
-                table: "Dishes");
-
-            migrationBuilder.DropColumn(
-                name: "MenuId",
-                table: "Dishes");
         }
     }
 }
