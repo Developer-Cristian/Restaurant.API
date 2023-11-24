@@ -31,7 +31,7 @@ namespace Restaurant.EntityFramework.Repositories.ReadRepos
             if (name is null) throw new ArgumentNullException(nameof(name));
             if (menuId is null) throw new ArgumentNullException(nameof(menuId));
 
-            var existing = await _context.Drinks.FirstOrDefaultAsync(x => x.Name.Equals(x.Name) && x.MenuId.Equals(menuId));
+            var existing = await _context.Drinks.FirstOrDefaultAsync(x => x.Name.Equals(name) && x.MenuId.Equals(menuId));
 
             if (existing != null) return existing;
 
