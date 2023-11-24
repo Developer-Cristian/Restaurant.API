@@ -2,6 +2,7 @@
 using Restaurant.EntityFramework.Contexts;
 using Restaurant.Models;
 using Restaurant.Repositories.ReadRepos;
+using System.ComponentModel.DataAnnotations;
 
 namespace Restaurant.EntityFramework.Repositories.ReadRepos
 {
@@ -24,6 +25,18 @@ namespace Restaurant.EntityFramework.Repositories.ReadRepos
             if (id is null) throw new ArgumentNullException(nameof(id));
 
             return await _context.Dishes.Include(x => x.Menu).FirstOrDefaultAsync(x => x.Id.Equals(id));
+        }
+
+        public async Task<Dish> GetDishByNameAndMenuAsync(string name, Guid? menuId)
+        {
+            if (name is null) throw new ArgumentNullException(nameof(name));
+            if (menuId is null) throw new ArgumentNullException(nameof(menuId));
+
+            var existing = await _context.Dishes.FirstOrDefaultAsync(x => x.Name.Equals(x.Name) && x.MenuId.Equals(menuId));
+          
+            if(existing != null) return existing;
+
+            return null;
         }
     }
 }

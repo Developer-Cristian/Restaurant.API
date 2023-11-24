@@ -25,5 +25,17 @@ namespace Restaurant.EntityFramework.Repositories.ReadRepos
 
             return await _context.Drinks.Include(x => x.Menu).FirstOrDefaultAsync(x => x.Id.Equals(id));
         }
+
+        public async Task<Drink> GetDrinkByNameAndMenuAsync(string name, Guid? menuId)
+        {
+            if (name is null) throw new ArgumentNullException(nameof(name));
+            if (menuId is null) throw new ArgumentNullException(nameof(menuId));
+
+            var existing = await _context.Drinks.FirstOrDefaultAsync(x => x.Name.Equals(x.Name) && x.MenuId.Equals(menuId));
+
+            if (existing != null) return existing;
+
+            return null;
+        }
     }
 }
