@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Common", "Restau
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.EntityFramework", "Restaurant.EntityFramework\Restaurant.EntityFramework.csproj", "{B3E7DCF6-5926-4228-B9A6-F9ADC9C88678}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Restaurant.Contracts", "Restaurant.Contracts\Restaurant.Contracts.csproj", "{20E54D2F-EBDD-4A0C-A714-CE9DB517BAB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Contracts", "Restaurant.Contracts\Restaurant.Contracts.csproj", "{20E54D2F-EBDD-4A0C-A714-CE9DB517BAB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A209AD5C-BF3B-4027-9E74-7EEFD60728ED}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
