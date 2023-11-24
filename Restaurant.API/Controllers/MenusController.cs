@@ -62,7 +62,7 @@ namespace Restaurant.API.Controllers
         {
             if (request is null) return BadRequest();
 
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var entity = _mapper.Map<Menu>(request);
 
@@ -98,7 +98,7 @@ namespace Restaurant.API.Controllers
         {
             if (request is null) return BadRequest();
 
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             var existing = await _readMenuService.GetAsync(request.Id);
             if(existing is null) 
@@ -138,11 +138,11 @@ namespace Restaurant.API.Controllers
         {
             if (id is null) return BadRequest();
 
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var existing = await _readDishService.GetAsync(id);
+            var existing = await _readMenuService.GetAsync(id);
             if (existing is null)
-                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Dish", id));
+                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Menu", id));
 
             var errors = await _saveMenuService.DelateAsync(id);
 

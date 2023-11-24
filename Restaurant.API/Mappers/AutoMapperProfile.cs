@@ -13,6 +13,10 @@ namespace Restaurant.API.Mappers
             CreateMap<CreateDishRequest, Dish>();
             CreateMap<UpdateDishRequest, Dish>();
 
+            CreateMap<Drink, DrinkResponse>();
+            CreateMap<CreateDrinkRequest, Drink>();
+            CreateMap<UpdateDrinkRequest, Drink>();
+
             CreateMap<Menu, MenuResponse>();
             CreateMap<CreateMenuRequest, Menu>();
             CreateMap<UpdateMenuRequest, Menu>();
