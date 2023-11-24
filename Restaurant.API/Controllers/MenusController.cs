@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using Restaurant.Contracts.Request;
 using Restaurant.Contracts.Response;
 using Restaurant.Models;
-using Restaurant.Repositories.ReadRepos;
 using Restaurant.Services.ReadService;
 using Restaurant.Services.SaveService;
 
@@ -89,6 +88,46 @@ namespace Restaurant.API.Controllers
             if (errors.Any()) return BadRequest(errors);
 
             return Ok(_mapper.Map<MenuResponse>(entity));
+        }
+
+        [HttpPost]
+        [Route("UpdateMenu")]
+        [ProducesResponseType(200, Type = typeof(MenuResponse))]
+        public async Task<IActionResult> UpdateAsync(UpdateMenuRequest request)
+        {
+            if (request is null) return BadRequest();
+
+            if (!ModelState.IsValid) return BadRequest();
+
+            var existing = await _readMenuService.GetAsync(request.Id);
+            if(existing is null) 
+                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Menu", request.Id));
+
+            _mapper.Map(request, existing);
+
+            if (request.DishId is not null)
+            {
+                var dish = await _readDishService.GetAsync(request.DishId);
+                if (dish is null)
+                    return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Dish", request.DishId));
+
+                existing.Dishes.Add(dish);
+            }
+
+            if (request.DrinkId is not null)
+            {
+                var drink = await _readDrinkService.GetAsync(request.DrinkId);
+                if (drink is null)
+                    return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Drink", request.DrinkId));
+
+                existing.Drinks.Add(drink);
+            }
+
+            var errors = await _saveMenuService.SaveAsync(existing);
+
+            if (errors.Any()) return BadRequest(errors);
+
+            return Ok(_mapper.Map<MenuResponse>(existing));
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Restaurant.Models;
 using Restaurant.Repositories.SaveRepos;
-using Restaurant.Services.ReadService;
 using Restaurant.Services.SaveService;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,12 +8,10 @@ namespace Restaurant.Services.SaveServices.Impl
     public class SaveDishService : ISaveDishService
     {
         private readonly ISaveDishRepository _repository;
-        private readonly IReadDishService _readService;
 
-        public SaveDishService(ISaveDishRepository repository, IReadDishService readService)
+        public SaveDishService(ISaveDishRepository repository)
         {
             _repository = repository;
-            _readService = readService;
         }
 
         public async Task<IEnumerable<ValidationResult>> DelateAsync(Guid? id)
@@ -35,7 +32,7 @@ namespace Restaurant.Services.SaveServices.Impl
 
             if (entity.Id is null)
             {
-                var result = await _readService.GetAsync(entity.Id);
+                var result = await _repository.GetAsync(entity.Id);
                 if (result != null)
                 {
                     errors.Add(new ValidationResult(string.Format(Common.Resources.Errors.AlreadyExisting, "Dish", entity.Id), new List<string> { nameof(Dish.Id) }));
