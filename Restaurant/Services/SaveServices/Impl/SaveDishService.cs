@@ -32,10 +32,10 @@ namespace Restaurant.Services.SaveServices.Impl
 
             if (entity.Id is null)
             {
-                var result = await _repository.GetAsync(entity.Id);
-                if (result != null)
+                var existing = await _repository.GetDishByNameAndMenuAsync(entity.Name, entity.MenuId);
+                if (existing != null)
                 {
-                    errors.Add(new ValidationResult(string.Format(Common.Resources.Errors.AlreadyExisting, "Dish", entity.Id), new List<string> { nameof(Dish.Id) }));
+                    errors.Add(new ValidationResult(string.Format(Common.Resources.Errors.AlreadyExisting, "Dish", existing.Id), new List<string> { nameof(Dish.Id) }));
                 }
             }
 

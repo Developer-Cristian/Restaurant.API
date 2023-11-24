@@ -30,11 +30,11 @@ namespace Restaurant.Services.SaveServices.Impl
 
             if(entity.Id is null) entity.CreationDate = DateTime.Now;
 
-            var existing = await _repository.GetAsync(entity.Id);
-            if(existing != null)
-            {
-                errors.Add(new ValidationResult(string.Format(Common.Resources.Errors.AlreadyExisting, entity.Id), new List<string> { nameof(Menu.Id) }));
-            }
+            //var existing = await _repository.GetAsync(entity.Id);
+            //if(existing != null)
+            //{
+            //    errors.Add(new ValidationResult(string.Format(Common.Resources.Errors.AlreadyExisting, entity.Id), new List<string> { nameof(Menu.Id) }));
+            //}
 
             if (errors.Any())
                 return errors;

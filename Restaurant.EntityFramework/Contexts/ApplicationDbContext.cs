@@ -32,12 +32,12 @@ namespace Restaurant.EntityFramework.Contexts
             modelBuilder.Entity<Menu>()
                 .HasMany(m => m.Dishes)
                 .WithOne(d => d.Menu)
-                .HasForeignKey(d => d.Id);
+                .HasForeignKey(d => d.MenuId);
 
             modelBuilder.Entity<Menu>()
                 .HasMany(m => m.Drinks)
                 .WithOne(d => d.Menu)
-                .HasForeignKey(d => d.Id);
+                .HasForeignKey(d => d.MenuId);
         }
 
         /// <summary>

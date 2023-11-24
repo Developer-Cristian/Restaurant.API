@@ -4,7 +4,8 @@ namespace Restaurant.Contracts.Response
 {
     public class MenuResponse
     {
-        [Required(ErrorMessageResourceName = "NameRequired", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
 
         public List<DishResponse> Dishes { get; set; }

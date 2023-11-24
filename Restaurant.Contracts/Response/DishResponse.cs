@@ -4,6 +4,8 @@ namespace Restaurant.Contracts.Response
 {
     public class DishResponse
     {
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }
