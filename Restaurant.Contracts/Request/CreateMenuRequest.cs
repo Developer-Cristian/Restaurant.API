@@ -1,15 +1,15 @@
 ﻿using Restaurant.Common.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace Restaurant.Models
+namespace Restaurant.Contracts.Request
 {
-    public class Menu : ModelBase, IEntity
+    public class CreateMenuRequest
     {
         [Required(ErrorMessageResourceName = "NameRequired", ErrorMessageResourceType = typeof(Common.Resources.Errors))]
         public string Name { get; set; }
 
-        public List<Dish> Dishes { get; set; }
+        public Guid? DishId { get; set; }
 
-        public List<Drink> Drinks { get; set; }
+        public Guid? DrinkId { get; set; }
     }
 }

@@ -56,7 +56,7 @@ namespace Restaurant.API.Controllers
 
         [HttpPost]
         [Route("CreateDish")]
-        [ProducesResponseType(201, Type = typeof(DishResponse))]
+        [ProducesResponseType(200, Type = typeof(DishResponse))]
         public async Task<IActionResult> CreateAsync(CreateDishRequest request)
         {
             if (request is null) return BadRequest();
@@ -75,7 +75,7 @@ namespace Restaurant.API.Controllers
 
             if (errors.Any()) return BadRequest(errors);
 
-            return CreatedAtRoute("Dish created", _mapper.Map<DishResponse>(entity));
+            return Ok(_mapper.Map<DishResponse>(entity));
         }
 
         [HttpPut]
