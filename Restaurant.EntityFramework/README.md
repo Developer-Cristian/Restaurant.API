@@ -1,11 +1,11 @@
 # Esecuzione di Entity Framework migration 
 - aprire console di gestione pacchetti e spostarsi nella cartella della web api contenente l app settings con la connstring
-- lanciare "dotnet ef migrations add CreateInitial --project ..\Restaurant.EntityFramework"
+- lanciare "Add-Migration Initials"
 
 
 # per gli aggiornamenti
 - aprire console di gestione pacchetti e spostarsi nella cartella della web api contenente l app settings con la connstring
-- lanciare "dotnet ef database update"
+- lanciare "Update-Database"
 
 # Utilizzo user secret con EF
 La funzione dei user secret è quella di poter accedere a info sensibili solo in ambiente di Development, 

@@ -124,20 +124,20 @@ namespace Restaurant.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The fiel Price is required.
-        /// </summary>
-        public static string Price {
-            get {
-                return ResourceManager.GetString("Price", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Price must be a valid value.
         /// </summary>
         public static string PriceNotValid {
             get {
                 return ResourceManager.GetString("PriceNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The fiel Price is required.
+        /// </summary>
+        public static string PriceRequired {
+            get {
+                return ResourceManager.GetString("PriceRequired", resourceCulture);
             }
         }
         

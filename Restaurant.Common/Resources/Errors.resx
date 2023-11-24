@@ -138,11 +138,11 @@
   <data name="NameRequired" xml:space="preserve">
     <value>The fiel Name is required</value>
   </data>
-  <data name="Price" xml:space="preserve">
-    <value>The fiel Price is required</value>
-  </data>
   <data name="PriceNotValid" xml:space="preserve">
     <value>Price must be a valid value</value>
+  </data>
+  <data name="PriceRequired" xml:space="preserve">
+    <value>The fiel Price is required</value>
   </data>
   <data name="StarsNumberNotValid" xml:space="preserve">
     <value>The stars number must be between 1 and 5</value>

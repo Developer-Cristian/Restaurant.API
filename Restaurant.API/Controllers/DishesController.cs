@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.HttpSys;
 using Microsoft.IdentityModel.Tokens;
 using Restaurant.Contracts.Request;
 using Restaurant.Contracts.Response;
@@ -57,18 +56,18 @@ namespace Restaurant.API.Controllers
 
         [HttpPost]
         [Route("CreateDish")]
-        [ProducesResponseType(201, Type = typeof(DishResponse))]
+        [ProducesResponseType(200, Type = typeof(DishResponse))]
         public async Task<IActionResult> CreateAsync(CreateDishRequest request)
         {
             if (request is null) return BadRequest();
 
             if (!ModelState.IsValid) return BadRequest();
-           
+
             var entity = _mapper.Map<Dish>(request);
 
             var menu = await _readMenuService.GetAsync(request.MenuId);
-            if(menu is null)
-                return BadRequest(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Menu", request.MenuId));
+            if (menu is null)
+                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Menu", request.MenuId));
 
             entity.Menu = menu;
 
@@ -76,7 +75,54 @@ namespace Restaurant.API.Controllers
 
             if (errors.Any()) return BadRequest(errors);
 
-            return CreatedAtRoute("Dish created", _mapper.Map<DishResponse>(entity));
+            return Ok(_mapper.Map<DishResponse>(entity));
+        }
+
+        [HttpPut]
+        [Route("UpdateDish")]
+        [ProducesResponseType(200, Type = typeof(DishResponse))]
+        public async Task<IActionResult> UpdateAsync(UpdateDishRequest request)
+        {
+            if (request is null) return BadRequest();
+
+            if (!ModelState.IsValid) return BadRequest();
+
+            var existing = await _readDishService.GetAsync(request.Id);
+            if (existing is null)
+                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Dish", request.Id));
+
+            var menu = await _readMenuService.GetAsync(request.MenuId);
+            if (menu is null)
+                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Menu", request.MenuId));
+
+            _mapper.Map(request, existing);
+            existing.Menu = menu;
+
+            var errors = await _saveDishService.SaveAsync(existing);
+
+            if (errors.Any()) return BadRequest(errors);
+
+            return Ok(_mapper.Map<DishResponse>(existing));
+        }
+
+        [HttpDelete]
+        [Route("DeleteDish/{id}")]
+        [ProducesResponseType(200, Type = typeof(DishResponse))]
+        public async Task<IActionResult> DeleteAsync(Guid? id)
+        {
+            if (id is null) return BadRequest();
+
+            if (!ModelState.IsValid) return BadRequest();
+
+            var existing = await _readDishService.GetAsync(id);
+            if (existing is null)
+                return NotFound(string.Format(Common.Resources.Errors.EntityWithIdNotFound, "Dish", id));
+
+            var errors = await _saveDishService.DelateAsync(id);
+
+            if (errors.Any()) return BadRequest(errors);
+
+            return Ok(_mapper.Map<DishResponse>(existing));
         }
     }
 }
