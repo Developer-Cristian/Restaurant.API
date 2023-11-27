@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Restaurant.EntityFramework.Contexts;
 
-namespace Restaurant.BehaviourTest.Controllers
+namespace Restaurant.BehaviourTest.Controllers.InMemoryControllers
 {
     public class InMemoryDb
     {

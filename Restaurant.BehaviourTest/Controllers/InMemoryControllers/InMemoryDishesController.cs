@@ -5,7 +5,7 @@ using Restaurant.Services.ReadServices.Impl;
 using Restaurant.Services.SaveServices.Impl;
 using VGC.Operations.Api.Integration.Tests.Helpers;
 
-namespace Restaurant.BehaviourTest.Controllers
+namespace Restaurant.BehaviourTest.Controllers.InMemoryControllers
 {
     public class InMemoryDishesController : InMemoryDb
     {

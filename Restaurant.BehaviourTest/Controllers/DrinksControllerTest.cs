@@ -6,9 +6,9 @@ using Restaurant.Contracts.Response;
 using System.Net;
 using VGC.Operations.Api.Integration.Tests.Helpers;
 
-namespace Restaurant.BehaviourTest.DishControllers
+namespace Restaurant.BehaviourTest.DrinkControllers
 {
-    public class DishesControllerTest : InMemoryDishesController
+    public class DrinksControllerTest : InMemoryDrinksController
     {
         [Fact]
         public async Task FetchAsyncShouldReturn200()
@@ -22,7 +22,7 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult);
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var list = objResult.Value as List<DishResponse>;
+            var list = objResult.Value as List<DrinkResponse>;
             Assert.NotNull(list);
             Assert.NotEmpty(list);
         }
@@ -31,7 +31,7 @@ namespace Restaurant.BehaviourTest.DishControllers
         public async Task GetAsyncShouldReturn200()
         {
             //Arrange
-            var request = _context.Dishes.FirstOrDefault();
+            var request = _context.Drinks.FirstOrDefault();
 
             //Act
             var result = await _sut.GetAsync(request.Id);
@@ -42,18 +42,18 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult );
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var dish = objResult.Value as DishResponse;
-            Assert.NotNull(dish);
-            Assert.Equal(request.Id, dish.Id);
-            Assert.Equal(request.Name, dish.Name);
-            Assert.Equal(request.Star, dish.Star);
+            var Drink = objResult.Value as DrinkResponse;
+            Assert.NotNull(Drink);
+            Assert.Equal(request.Id, Drink.Id);
+            Assert.Equal(request.Name, Drink.Name);
+            Assert.Equal(request.Price, Drink.Price);
         }
 
         [Fact]
         public async Task CreateAsyncShouldReturn201()
         {
             //Arrange
-            var request = AutoMapperHelper.GetConfiguration().Map<CreateDishRequest>(DataFakerHelper.DishDataFaker.Generate());
+            var request = AutoMapperHelper.GetConfiguration().Map<CreateDrinkRequest>(DataFakerHelper.DrinkDataFaker.Generate());
             request.MenuId = _context.Menus.FirstOrDefault().Id;
 
             //Act 
@@ -65,17 +65,17 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult);
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var entity = objResult.Value as DishResponse;
+            var entity = objResult.Value as DrinkResponse;
             Assert.NotNull(entity);
             Assert.Equal(request.Name, entity.Name);
-            Assert.Equal(entity.Star, entity.Star);
+            Assert.Equal(entity.Price, entity.Price);
         }
 
         [Fact]
         public async Task UpdateAsyncShouldReturn200()
         {
             //Arrange
-            var request = AutoMapperHelper.GetConfiguration().Map<UpdateDishRequest>(DataFakerHelper.DishDataFaker.Generate());
+            var request = AutoMapperHelper.GetConfiguration().Map<UpdateDrinkRequest>(DataFakerHelper.DrinkDataFaker.Generate());
 
             // getting a randomic existing HACCP code
             var list = await _repos.FetchAllAsync();
@@ -92,7 +92,7 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult);
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var entity = objResult.Value as DishResponse;
+            var entity = objResult.Value as DrinkResponse;
             Assert.NotNull(entity);
             Assert.Equal(testId, entity.Id);
         }
@@ -101,7 +101,7 @@ namespace Restaurant.BehaviourTest.DishControllers
         public async Task DeleteShouldReturn200()
         {
             //Arrange
-            var requestId = _context.Dishes.FirstOrDefault().Id;
+            var requestId = _context.Drinks.FirstOrDefault().Id;
             
             //Act
             var result = await _sut.DeleteAsync(requestId);

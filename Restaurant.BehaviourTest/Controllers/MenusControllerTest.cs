@@ -6,9 +6,9 @@ using Restaurant.Contracts.Response;
 using System.Net;
 using VGC.Operations.Api.Integration.Tests.Helpers;
 
-namespace Restaurant.BehaviourTest.DishControllers
+namespace Restaurant.BehaviourTest.MenuControllers
 {
-    public class DishesControllerTest : InMemoryDishesController
+    public class MenusControllerTest : InMemoryMenusController
     {
         [Fact]
         public async Task FetchAsyncShouldReturn200()
@@ -22,7 +22,7 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult);
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var list = objResult.Value as List<DishResponse>;
+            var list = objResult.Value as List<MenuResponse>;
             Assert.NotNull(list);
             Assert.NotEmpty(list);
         }
@@ -31,7 +31,7 @@ namespace Restaurant.BehaviourTest.DishControllers
         public async Task GetAsyncShouldReturn200()
         {
             //Arrange
-            var request = _context.Dishes.FirstOrDefault();
+            var request = _context.Menus.FirstOrDefault();
 
             //Act
             var result = await _sut.GetAsync(request.Id);
@@ -42,19 +42,17 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult );
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var dish = objResult.Value as DishResponse;
-            Assert.NotNull(dish);
-            Assert.Equal(request.Id, dish.Id);
-            Assert.Equal(request.Name, dish.Name);
-            Assert.Equal(request.Star, dish.Star);
+            var Menu = objResult.Value as MenuResponse;
+            Assert.NotNull(Menu);
+            Assert.Equal(request.Id, Menu.Id);
+            Assert.Equal(request.Name, Menu.Name);
         }
 
         [Fact]
         public async Task CreateAsyncShouldReturn201()
         {
             //Arrange
-            var request = AutoMapperHelper.GetConfiguration().Map<CreateDishRequest>(DataFakerHelper.DishDataFaker.Generate());
-            request.MenuId = _context.Menus.FirstOrDefault().Id;
+            var request = AutoMapperHelper.GetConfiguration().Map<CreateMenuRequest>(DataFakerHelper.MenuDataFaker.Generate());
 
             //Act 
             var result = await _sut.CreateAsync(request);
@@ -65,23 +63,21 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult);
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var entity = objResult.Value as DishResponse;
+            var entity = objResult.Value as MenuResponse;
             Assert.NotNull(entity);
             Assert.Equal(request.Name, entity.Name);
-            Assert.Equal(entity.Star, entity.Star);
         }
 
         [Fact]
         public async Task UpdateAsyncShouldReturn200()
         {
             //Arrange
-            var request = AutoMapperHelper.GetConfiguration().Map<UpdateDishRequest>(DataFakerHelper.DishDataFaker.Generate());
+            var request = AutoMapperHelper.GetConfiguration().Map<UpdateMenuRequest>(DataFakerHelper.MenuDataFaker.Generate());
 
             // getting a randomic existing HACCP code
             var list = await _repos.FetchAllAsync();
             var testId = list.FirstOrDefault().Id;
             request.Id = testId;
-            request.MenuId = _context.Menus.FirstOrDefault().Id;
 
             //Act 
             var result = await _sut.UpdateAsync(request);
@@ -92,7 +88,7 @@ namespace Restaurant.BehaviourTest.DishControllers
             Assert.NotNull(objResult);
             Assert.Equal((int)HttpStatusCode.OK, objResult.StatusCode);
 
-            var entity = objResult.Value as DishResponse;
+            var entity = objResult.Value as MenuResponse;
             Assert.NotNull(entity);
             Assert.Equal(testId, entity.Id);
         }
@@ -101,7 +97,7 @@ namespace Restaurant.BehaviourTest.DishControllers
         public async Task DeleteShouldReturn200()
         {
             //Arrange
-            var requestId = _context.Dishes.FirstOrDefault().Id;
+            var requestId = _context.Menus.FirstOrDefault().Id;
             
             //Act
             var result = await _sut.DeleteAsync(requestId);
