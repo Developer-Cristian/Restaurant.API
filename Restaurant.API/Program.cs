@@ -10,7 +10,6 @@ using Restaurant.Services.SaveServices.Impl;
 using Restaurant.Repositories.SaveRepos;
 using Restaurant.EntityFramework.Repositories.SaveRepos;
 using Restaurant.API.Mappers;
-using NuGet.ContentModel;
 
 var builder = WebApplication.CreateBuilder(args);
 

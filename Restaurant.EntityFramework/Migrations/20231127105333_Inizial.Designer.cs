@@ -12,8 +12,8 @@ using Restaurant.EntityFramework.Contexts;
 namespace Restaurant.EntityFramework.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231124154835_Initial")]
-    partial class Initial
+    [Migration("20231127105333_Inizial")]
+    partial class Inizial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
