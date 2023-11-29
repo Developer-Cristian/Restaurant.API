@@ -7,13 +7,13 @@ Entities:
 - Menù: isDinner // sera solo pizza come piatto
 		
 - Piatto: Nome
-		  Tipo piatto
-		  Prezzo
-		  Descrizione
-		  Stelle
+	  Tipo piatto
+	  Prezzo
+	  Descrizione
+	  Stelle
 
 - Tipo piatto:  Antipasto
-				Primo
-				Secondo
-				Dessert
-				Pizza
+		Primo
+		Secondo
+		Dessert
+		Pizza
